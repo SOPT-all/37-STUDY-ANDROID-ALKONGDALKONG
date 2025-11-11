@@ -1,0 +1,64 @@
+package com.example.yubin_han
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.yubin_han.ui.theme.YubinhanTheme
+
+
+
+class Solution {
+    fun solution(s: String): Boolean {
+        //길이를 체크하는 값
+        val lengthCheck = (s.length == 4 || s.length == 6)
+
+        if (!lengthCheck) {
+            return false
+        }
+
+        //숫자인지 체크하는 값
+        val numberCheck = s.matches(Regex("^\\d+$"))
+
+        var answer = lengthCheck && numberCheck
+        return answer
+    }
+}
+
+fun main(){
+    val solver=Solution()
+    println("문자열을 입력해주세요.길이가 4또는 6이고 숫자로만 이뤄진다면 true를 반환합니다.")
+    val inputString:String?= readLine()
+    if(inputString!=null)
+    {
+        val result=solver.solution(inputString)
+        println("결과\n")
+        println(result)
+    }
+
+}
+
+
+
+
+
+/*
+문자열 s의 길이가 4 혹은 6이고, 숫자로만 구성돼있는지 확인해주는 함수, solution을 완성하세요.
+예를 들어 s가 "a234"이면 False를 리턴하고 "1234"라면 True를 리턴하면 됩니다.
+
+제한 사항
+s는 길이 1 이상, 길이 8 이하인 문자열입니다.
+s는 영문 알파벳 대소문자 또는 0부터 9까지 숫자로 이루어져 있습니다.
+입출력 예
+s	return
+"a234"	false
+"1234"	true
+*/
+
