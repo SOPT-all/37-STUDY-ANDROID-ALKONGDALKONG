@@ -1,0 +1,29 @@
+//https://school.programmers.co.kr/learn/courses/30/lessons/87946
+
+class Solution {
+    var max = 0
+    lateinit var visit: BooleanArray
+
+    fun solution(k: Int, dungeons: Array<IntArray>): Int {
+        visit = BooleanArray(dungeons.size)
+        
+        dfs(k, dungeons, 0)
+        
+        return max
+    }
+
+    fun dfs(cur: Int, dungeons: Array<IntArray>, cnt: Int) {
+        // 현재까지 돈 던전 개수가 최대값이면 갱신 
+        if (cnt > max) max = cnt
+
+        for (i in dungeons.indices) {
+            if (!visit[i] && cur >= dungeons[i][0]) {
+                visit[i] = true
+                
+                dfs(cur - dungeons[i][1], dungeons, cnt + 1)
+                
+                visit[i] = false // 다시 돌아와 다른길 
+            }
+        }
+    }
+}
